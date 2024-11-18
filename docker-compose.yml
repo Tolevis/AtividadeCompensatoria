@@ -1,0 +1,13 @@
+version: '3'
+services:
+  servidor-rest:
+    build: ./servidor-rest
+    ports:
+      - "3000:3000"
+  
+  aplicacao-http:
+    build: ./aplicacao-http
+    depends_on:
+      - servidor-rest
+    environment:
+      - SERVER_URL=http://servidor-rest:3000
